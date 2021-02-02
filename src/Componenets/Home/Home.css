@@ -1,0 +1,56 @@
+body {
+    background-image: linear-gradient(to right top, #9a66c4, #6a78cf, #3384cc, #008bbe, #0e8faa);
+    height: 100vh;
+}
+
+.logo {
+    width: 600px;
+    height: auto;
+}
+
+.home-graphic {
+    width: 500px;
+    height: auto;
+}
+
+.home-graphics-container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home {
+    display: flex;
+    justify-content: space-between;
+}
+
+.circle {
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 50%;
+    margin-right: -60px;
+    margin-top: 200px;
+}
+
+.home-text{
+    font-size: 43px;
+}
+
+.circle-contents {
+    position: relative;
+    top: 150px;
+    text-align: center;
+}
+
+.start-game-button {
+    background-color: #577AB7;
+    color: white;
+    border: none;
+    border-radius: 62px;
+    padding: 5px;
+    height: 30px;
+    width: 100px;
+}
