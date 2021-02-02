@@ -1,0 +1,24 @@
+.instructions {
+    font-size: 20px;
+    color: white;
+  }
+
+  #astronaut {
+      position: absolute;
+      top: 100px;
+      right: 200px;;
+  }
+
+#planet {
+    position: relative;
+    top: 300px;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
