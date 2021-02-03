@@ -3,7 +3,8 @@ import astronaut from "../../Media/astronaut.svg";
 import planet from "../../Media/new-planet.svg";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
-// import { anySeries } from "async";
+import levelLogo from "../../Media/Level-1.png";
+import {  useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -57,30 +58,54 @@ const isCollide = (a, b) => {
 function Level1() {
   const [answer_1, setAnswer_1] = useState("");
   const [isRunning, setIsRunning] = useState(false);
+  const [attemptComplete, setAttemptComplete] = useState(false);
+  const [isCollisionDetected, setIsCollisionDetected] = useState(false);
 
   const astronautElement = document.getElementById("astronaut");
   const planetElement = document.getElementById("planet");
 
-  setInterval(() => {
-    const isCollisionDetected =
-      astronautElement &&
-      planetElement &&
-      isCollide(astronautElement, planetElement);
+  function run() {
+    setAttemptComplete(false);
+    setIsRunning(true);
+    setTimeout(() => {
+      setAttemptComplete(true);
+      setIsCollisionDetected
+      (astronautElement &&
+        planetElement &&
+        isCollide(astronautElement, planetElement));
+    }, 1100)
+  }
 
-    isCollisionDetected !== null &&
-      console.log(`collision detected = ${isCollisionDetected}`);
+  //Brings winner to the next level
+  const history = useHistory();
+  const routeChange = () =>{
+      let path = '/level_2';
+      history.push(path);
+    }
 
-      if (isCollisionDetected) {
-        alert("good job!")
-      }
-  }, 1000);
+  //If player types in the correct input
+  function youWin() {
+    return (
+      <div>
+        <h1>You are out of this world!</h1>
+        <button onClick={routeChange}>next level</button>
+      </div>
+    )
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-      <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br/> Use transform to help the astronaut discover a new planet.</h1>
+        <img src={levelLogo} className="level-logo" />
+        {isRunning && attemptComplete
+          ? isCollisionDetected
+            ? youWin()
+            : <h1>Oops, not quiet! Click the reset button to try again</h1>
+          : null}
+        <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
         <CustomizedInput
           value={answer_1}
+          placeholder="translate(x,y)"
           onChange={(e) => {
             setIsRunning(false);
             setAnswer_1(e.target.value);
@@ -89,9 +114,7 @@ function Level1() {
 
         <StyledButton
           buttonType="run"
-          onClick={() => {
-            setIsRunning(true);
-          }}
+          onClick={run}
         >
           Run
         </StyledButton>
@@ -111,7 +134,6 @@ function Level1() {
           className="App-logo"
           myAlt="logo"
           rotate1={isRunning && answer_1}
-          // rotate2={isRunning && answer_2}
         />
 
         <MyStyledImg
@@ -119,8 +141,6 @@ function Level1() {
           src={planet}
           className="App-logo"
           myAlt="logo"
-          // rotate1={isRunning && answer_1}
-          // rotate2={isRunning && answer_2}
         />
         <a
           className="App-link"
