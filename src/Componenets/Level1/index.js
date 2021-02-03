@@ -3,7 +3,8 @@ import astronaut from "../../Media/astronaut.svg";
 import planet from "../../Media/new-planet.svg";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import levelLogo from "../../Media/Level-1.png"
+import levelLogo from "../../Media/Level-1.png";
+import {  useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -75,14 +76,31 @@ function Level1() {
     }, 1100)
   }
 
+  //Brings winner to the next level
+  const history = useHistory();
+  const routeChange = () =>{
+      let path = '/level_2';
+      history.push(path);
+    }
+
+  //If player types in the correct input
+  function youWin() {
+    return (
+      <div>
+        <h1>You are out of this world!</h1>
+        <button onClick={routeChange}>next level</button>
+      </div>
+    )
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={levelLogo} className="level-logo" />
         {isRunning && attemptComplete
           ? isCollisionDetected
-            ? <h1>You are out of this world!</h1>
-            : <h1>Click the reset button to try again</h1>
+            ? youWin()
+            : <h1>Oops, not quiet! Click the reset button to try again</h1>
           : null}
         <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
         <CustomizedInput
