@@ -108,7 +108,7 @@ function Level1() {
         {isRunning && attemptComplete
           ? isCollisionDetected
             ? youWin()
-            : <h1>Oops, not quiet! Click the reset button to try again</h1>
+            : <h1>Oops, not quite! Click the reset button to try again</h1>
           : null}
         <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
         <CustomizedInput

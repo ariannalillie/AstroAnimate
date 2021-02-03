@@ -1,9 +1,9 @@
-import levelLogo from "../../Media/Level-3.png";
+import levelLogo from "../../Media/Level-8.png";
 import rocket from "../../Media/rocket.svg";
 import earth from "../../Media/earth.svg";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
-import "./Level3.css";
+import "./Level8.css";
 import { useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
@@ -39,11 +39,11 @@ const StyledButton = styled.button`
   height: 3.2em;
 `;
 
-function Level3() {
+function Level8() {
     //Brings winner to the next level
     const history = useHistory();
     const routeChange = () => {
-        let path = '/level_4';
+        let path = '/level_9';
         history.push(path);
     }
 
@@ -115,4 +115,4 @@ function Level3() {
     )
 }
 
-export default Level3;
+export default Level8;
