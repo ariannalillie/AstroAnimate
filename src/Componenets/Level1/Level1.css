@@ -1,6 +1,6 @@
 .instructions {
     font-size: 20px;
-    color: white;
+    color: #422E5C;
   }
 
   #astronaut {
@@ -12,6 +12,7 @@
 #planet {
     position: relative;
     top: 300px;
+    left: 850px;
     animation: spin 3s linear infinite;
 }
 
@@ -21,4 +22,27 @@
     } to {
         transform: rotate(360deg);
     }
+}
+
+.game-button {
+    width: 150px;
+    height: 40px;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 10px;
+    /* border: none; */
+    background-color: white;
+    color: #422E5C;
+}
+
+.input-container {
+    padding: 20px;
+    background-color: white;
+    width: 40%;
+    border-radius: 15px;
+}
+
+.level-logo {
+    width: 400px;
+    height: auto;
 }
