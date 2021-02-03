@@ -1,0 +1,11 @@
+#rocket {
+    position: absolute;
+    top: 100px;
+    right: 200px;;
+}
+
+#earth {
+    position: fixed;
+    top: 450px;
+    left: 850px;
+}

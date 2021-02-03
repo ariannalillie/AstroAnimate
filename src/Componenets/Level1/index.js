@@ -8,10 +8,10 @@ import {  useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
-    transform: ${rotate1};
+    transform: ${rotate2};
   }
   to {
-    transform: ${rotate2};
+    transform: ${rotate1};
   }
 `;
 
@@ -19,8 +19,8 @@ const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} infinite
-    20s linear;
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 1
+    2s linear;
   margin: 0.5em;
 `;
 
@@ -73,7 +73,7 @@ function Level1() {
       (astronautElement &&
         planetElement &&
         isCollide(astronautElement, planetElement));
-    }, 1100)
+    }, 2000)
   }
 
   //Brings winner to the next level
@@ -93,14 +93,22 @@ function Level1() {
     )
   }
 
+  // function notQuite() {
+  //   <div>
+  //     <h1>Oops, not quiet! Click the reset button to try again</h1>
+  //     <button>Get Hint</button>
+  //   </div>
+  // }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={levelLogo} className="level-logo" />
+        <div className="input-container">
         {isRunning && attemptComplete
           ? isCollisionDetected
             ? youWin()
-            : <h1>Oops, not quiet! Click the reset button to try again</h1>
+            : <h1>Oops, not quite! Click the reset button to try again</h1>
           : null}
         <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
         <CustomizedInput
@@ -111,7 +119,6 @@ function Level1() {
             setAnswer_1(e.target.value);
           }}
         />
-
         <StyledButton
           buttonType="run"
           onClick={run}
@@ -142,13 +149,7 @@ function Level1() {
           className="App-logo"
           myAlt="logo"
         />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
+        </div>
       </header>
     </div>
   );

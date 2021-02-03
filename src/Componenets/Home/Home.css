@@ -29,8 +29,7 @@ body {
     height: 600px;
     width: 600px;
     border-radius: 50%;
-    background-color: white;
-    opacity: 50%;
+    background-color: rgba(255, 255, 255, 0.513);
     margin-right: -60px;
     margin-top: 200px;
 }
