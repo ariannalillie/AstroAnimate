@@ -8,10 +8,10 @@ import {  useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
-    transform: ${rotate1};
+    transform: ${rotate2};
   }
   to {
-    transform: ${rotate2};
+    transform: ${rotate1};
   }
 `;
 
@@ -19,8 +19,8 @@ const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} infinite
-    20s linear;
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 1
+    2s linear;
   margin: 0.5em;
 `;
 
@@ -73,7 +73,7 @@ function Level1() {
       (astronautElement &&
         planetElement &&
         isCollide(astronautElement, planetElement));
-    }, 1100)
+    }, 2000)
   }
 
   //Brings winner to the next level
@@ -119,7 +119,6 @@ function Level1() {
             setAnswer_1(e.target.value);
           }}
         />
-
         <StyledButton
           buttonType="run"
           onClick={run}

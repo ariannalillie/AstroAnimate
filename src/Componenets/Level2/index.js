@@ -3,13 +3,15 @@ import rocket from "../../Media/rocket.svg";
 import earth from "../../Media/earth.svg";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
+import "./Level2.css";
+import { useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
-    transform: ${rotate1};
+    transform: rotate(0deg);
   }
   to {
-    transform: ${rotate2};
+    transform: ${rotate1};
   }
 `;
 
@@ -17,8 +19,8 @@ const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} infinite
-    20s linear;
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 1
+    2s linear;
   margin: 0.5em;
 `;
 
@@ -38,6 +40,24 @@ const StyledButton = styled.button`
 `;
 
 function Level2() {
+    //Brings winner to the next level
+    const history = useHistory();
+    const routeChange = () => {
+        let path = '/level_3';
+        history.push(path);
+    }
+
+    //If player types in the correct input
+    function youWin() {
+        return (
+            <div>
+                <h1>You are out of this world!</h1>
+                <button onClick={routeChange}>next level</button>
+            </div>
+        )
+    }
+
+
     const [answer_1, setAnswer_1] = useState("");
     const [isRunning, setIsRunning] = useState(false);
 
@@ -45,39 +65,45 @@ function Level2() {
         <div>
             <img src={levelLogo} className="level-logo" />
             <div className="input-container">
-            <h1 className='instructions'>The rotate() CSS function defines a transformation that rotates an element around a fixed point on the 2D plane, without deforming it. <br /> The Rocket is header in the wrong direction. Rotate the rocket x Degrees to point it back towards earth.</h1>
-            <CustomizedInput
-                value={answer_1}
-                placeholder="translate(x,y)"
-                onChange={(e) => {
-                    // setIsRunning(false);
-                    setAnswer_1(e.target.value);
-                }}
-            />
+                {isRunning
+                    ? answer_1 === "rotate(230deg)"
+                        ? youWin()
+                        : <h1>Oops, not quiet! Click the reset button to try again</h1>
+                    : null}
+                <h1 className='instructions'>The rotate() CSS function defines a transformation that rotates an element around a fixed point on the 2D plane, without deforming it. <br /> The Rocket is header in the wrong direction. Rotate the rocket 230 degrees to point it back towards earth.</h1>
+                <CustomizedInput
+                    value={answer_1}
+                    placeholder="rotate(xdeg)"
+                    onChange={(e) => {
+                        // setIsRunning(false);
+                        setAnswer_1(e.target.value);
+                    }}
+                />
 
-            <StyledButton
-                buttonType="run"
-                onClick={() => {
-                    setIsRunning(true);
-                  }}
-            >
-                Run
+                <StyledButton
+                    buttonType="run"
+                    onClick={() => {
+                        setIsRunning(true);
+                    }}
+                >
+                    Run
         </StyledButton>
-            <StyledButton
-                buttonType="reset"
-                onClick={() => {
-                    setIsRunning(false);
-                    setAnswer_1("");
-                }}
-            >
-                Reset
+                <StyledButton
+                    buttonType="reset"
+                    onClick={() => {
+                        setIsRunning(false);
+                        setAnswer_1("");
+                    }}
+                >
+                    Reset
         </StyledButton>
-        </div>
+            </div>
             <MyStyledImg
                 id="rocket"
                 src={rocket}
                 className="App-logo"
                 myAlt="logo"
+                rotate1={isRunning && answer_1}
             />
             <MyStyledImg
                 id="earth"
