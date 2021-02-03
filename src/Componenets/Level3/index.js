@@ -70,7 +70,15 @@ function Level3() {
                         ? youWin()
                         : <h1>Oops, not quiet! Click the reset button to try again</h1>
                     : null}
-                <h1 className='instructions'>The rotate() CSS function defines a transformation that rotates an element around a fixed point on the 2D plane, without deforming it. <br /> The Rocket is header in the wrong direction. Rotate the rocket 230 degrees to point it back towards earth.</h1>
+                <h1 className='instructions'>The bounce animation, uses translate(y) and keyframes to move your element up and down on the y-axis</h1>
+                <h1 className='instructions'>There is no gravity on the moon, so use translate to make the astronaut bounce.</h1>
+                <h1 className='instructions'>.astronaut {"{"}</h1>
+                <h1 className='instructions'>animation: bounce 1 2s linear;</h1>
+                <h1 className='instructions'>{"}"}</h1>
+                <h1 className='instructions'>@keyframes bounce {"{"}</h1>
+                <h1 className='instructions'>0% {"{ transform: translateY(0); }"}</h1>
+                <div className="label-container">
+                <h1 className='instructions'>50%</h1>
                 <CustomizedInput
                     value={answer_1}
                     placeholder="rotate(xdeg)"
@@ -79,6 +87,9 @@ function Level3() {
                         setAnswer_1(e.target.value);
                     }}
                 />
+                </div>
+                <h1 className='instructions'>100% {"{ transform: translateY(0); }"}</h1>
+                <h1 className='instructions'>{"}"}</h1>
 
                 <StyledButton
                     buttonType="run"

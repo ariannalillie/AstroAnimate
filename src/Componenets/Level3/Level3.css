@@ -1,0 +1,8 @@
+.instructions {
+    margin-bottom: 5px;
+}
+
+.label-container {
+    display: flex;
+    align-items: center;
+}

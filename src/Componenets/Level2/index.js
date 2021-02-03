@@ -19,8 +19,8 @@ const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 
-    2s linear;
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)}
+  1  2s linear;
   margin: 0.5em;
 `;
 
