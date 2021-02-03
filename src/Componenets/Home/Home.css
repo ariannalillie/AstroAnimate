@@ -30,7 +30,7 @@ body {
     width: 600px;
     border-radius: 50%;
     background-color: white;
-    opacity: 50%;
+    /* opacity: 50%; */
     margin-right: -60px;
     margin-top: 200px;
 }

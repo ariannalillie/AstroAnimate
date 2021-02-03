@@ -93,10 +93,18 @@ function Level1() {
     )
   }
 
+  // function notQuite() {
+  //   <div>
+  //     <h1>Oops, not quiet! Click the reset button to try again</h1>
+  //     <button>Get Hint</button>
+  //   </div>
+  // }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={levelLogo} className="level-logo" />
+        <div className="input-container">
         {isRunning && attemptComplete
           ? isCollisionDetected
             ? youWin()
@@ -142,13 +150,7 @@ function Level1() {
           className="App-logo"
           myAlt="logo"
         />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
+        </div>
       </header>
     </div>
   );
