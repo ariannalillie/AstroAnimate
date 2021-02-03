@@ -3,7 +3,7 @@ import astronaut from "../../Media/astronaut.svg";
 import planet from "../../Media/new-planet.svg";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
-// import { anySeries } from "async";
+import levelLogo from "../../Media/Level-1.png"
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -57,30 +57,37 @@ const isCollide = (a, b) => {
 function Level1() {
   const [answer_1, setAnswer_1] = useState("");
   const [isRunning, setIsRunning] = useState(false);
+  const [attemptComplete, setAttemptComplete] = useState(false);
+  const [isCollisionDetected, setIsCollisionDetected] = useState(false);
 
   const astronautElement = document.getElementById("astronaut");
   const planetElement = document.getElementById("planet");
 
-  setInterval(() => {
-    const isCollisionDetected =
-      astronautElement &&
-      planetElement &&
-      isCollide(astronautElement, planetElement);
-
-    isCollisionDetected !== null &&
-      console.log(`collision detected = ${isCollisionDetected}`);
-
-      if (isCollisionDetected) {
-        alert("good job!")
-      }
-  }, 1000);
+  function run() {
+    setAttemptComplete(false);
+    setIsRunning(true);
+    setTimeout(() => {
+      setAttemptComplete(true);
+      setIsCollisionDetected
+      (astronautElement &&
+        planetElement &&
+        isCollide(astronautElement, planetElement));
+    }, 1100)
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-      <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br/> Use transform to help the astronaut discover a new planet.</h1>
+        <img src={levelLogo} className="level-logo" />
+        {isRunning && attemptComplete
+          ? isCollisionDetected
+            ? <h1>You are out of this world!</h1>
+            : <h1>Click the reset button to try again</h1>
+          : null}
+        <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
         <CustomizedInput
           value={answer_1}
+          placeholder="translate(x,y)"
           onChange={(e) => {
             setIsRunning(false);
             setAnswer_1(e.target.value);
@@ -89,9 +96,7 @@ function Level1() {
 
         <StyledButton
           buttonType="run"
-          onClick={() => {
-            setIsRunning(true);
-          }}
+          onClick={run}
         >
           Run
         </StyledButton>
@@ -111,7 +116,6 @@ function Level1() {
           className="App-logo"
           myAlt="logo"
           rotate1={isRunning && answer_1}
-          // rotate2={isRunning && answer_2}
         />
 
         <MyStyledImg
@@ -119,8 +123,6 @@ function Level1() {
           src={planet}
           className="App-logo"
           myAlt="logo"
-          // rotate1={isRunning && answer_1}
-          // rotate2={isRunning && answer_2}
         />
         <a
           className="App-link"
