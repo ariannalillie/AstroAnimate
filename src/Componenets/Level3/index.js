@@ -1,5 +1,5 @@
 import levelLogo from "../../Media/Level-3.png";
-import rocket from "../../Media/rocket.svg";
+import astronaut from "../../Media/astronaut.svg";
 import earth from "../../Media/earth.svg";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
@@ -70,7 +70,7 @@ function Level3() {
                 <h1 className='instructions'>The bounce animation, uses translate(y) and keyframes to move your element up and down on the y-axis</h1>
                 <h1 className='instructions'>There is no gravity on the moon, so use translate to make the astronaut bounce.</h1>
                 <h1 className='instructions'>.astronaut {"{"}</h1>
-                <h1 className='instructions'>animation: bounce 1 2s linear;</h1>
+                <h1 className='instructions'>animation: bounce infinite 2s linear;</h1>
                 <h1 className='instructions'>{"}"}</h1>
                 <h1 className='instructions'>@keyframes bounce {"{"}</h1>
                 <h1 className='instructions'>0% {"{ transform: translateY(0); }"}</h1>
@@ -107,8 +107,8 @@ function Level3() {
         </StyledButton>
             </div>
             <MyStyledImg
-                id="rocket"
-                src={rocket}
+                id="astronaut"
+                src={astronaut}
                 className="App-logo"
                 myAlt="logo"
                 rotate1={isRunning && answer_1}
