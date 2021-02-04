@@ -7,19 +7,16 @@ import "./Level3.css";
 import { useHistory } from "react-router-dom";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: ${rotate1};
-  }
+0%   { transform: translateY(0px); }
+50%  { transform: ${rotate1}; }
+100% { transform: translateY(0px); }
 `;
 
 const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 1
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} infinite
     2s linear;
   margin: 0.5em;
 `;
@@ -81,7 +78,7 @@ function Level3() {
                 <h1 className='instructions'>50%</h1>
                 <CustomizedInput
                     value={answer_1}
-                    placeholder="rotate(xdeg)"
+                    placeholder="translateY(xpx)"
                     onChange={(e) => {
                         // setIsRunning(false);
                         setAnswer_1(e.target.value);
