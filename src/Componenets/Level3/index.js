@@ -1,6 +1,6 @@
 import levelLogo from "../../Media/Level-3.png";
 import astronaut from "../../Media/astronaut.svg";
-import earth from "../../Media/earth.svg";
+import moon from "../../Media/temp-moon.svg";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level3.css";
@@ -54,6 +54,16 @@ function Level3() {
         )
     }
 
+    //If player does not type in the correct input
+    function notQuite() {
+        return (
+        <div>
+          <h1>Oops, not quiet! Click the reset button to try again</h1>
+          <button>Get Hint</button>
+        </div>
+        )
+      }
+
 
     const [answer_1, setAnswer_1] = useState("");
     const [isRunning, setIsRunning] = useState(false);
@@ -65,17 +75,17 @@ function Level3() {
                 {isRunning
                     ? answer_1 === "rotate(230deg)"
                         ? youWin()
-                        : <h1>Oops, not quiet! Click the reset button to try again</h1>
+                        : notQuite()
                     : null}
                 <h1 className='instructions'>The bounce animation, uses translate(y) and keyframes to move your element up and down on the y-axis</h1>
                 <h1 className='instructions'>There is no gravity on the moon, so use translate to make the astronaut bounce.</h1>
-                <h1 className='instructions'>.astronaut {"{"}</h1>
-                <h1 className='instructions'>animation: bounce infinite 2s linear;</h1>
-                <h1 className='instructions'>{"}"}</h1>
-                <h1 className='instructions'>@keyframes bounce {"{"}</h1>
-                <h1 className='instructions'>0% {"{ transform: translateY(0); }"}</h1>
+                <h1 className='margin'>.astronaut {"{"}</h1>
+                <h1 className='margin'>animation: bounce infinite 2s linear;</h1>
+                <h1 className='margin'>{"}"}</h1>
+                <h1 className='margin'>@keyframes bounce {"{"}</h1>
+                <h1 className='margin'>0% {"{ transform: translateY(0); }"}</h1>
                 <div className="label-container">
-                <h1 className='instructions'>50%</h1>
+                <h1 className='margin'>50%</h1>
                 <CustomizedInput
                     value={answer_1}
                     placeholder="translateY(xpx)"
@@ -85,8 +95,8 @@ function Level3() {
                     }}
                 />
                 </div>
-                <h1 className='instructions'>100% {"{ transform: translateY(0); }"}</h1>
-                <h1 className='instructions'>{"}"}</h1>
+                <h1 className='margin'>100% {"{ transform: translateY(0); }"}</h1>
+                <h1 className='margin'>{"}"}</h1>
 
                 <StyledButton
                     buttonType="run"
@@ -107,18 +117,18 @@ function Level3() {
         </StyledButton>
             </div>
             <MyStyledImg
-                id="astronaut"
+                id="astronaut-3"
                 src={astronaut}
                 className="App-logo"
                 myAlt="logo"
                 rotate1={isRunning && answer_1}
             />
-            <MyStyledImg
-                id="earth"
-                src={earth}
+            {/* <MyStyledImg
+                id="moon"
+                src={moon}
                 className="App-logo"
                 myAlt="logo"
-            />
+            /> */}
         </div>
     )
 }

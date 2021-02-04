@@ -1,8 +1,34 @@
-.instructions {
-    margin-bottom: 5px;
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .label-container {
     display: flex;
     align-items: center;
 }
+
+#moon {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#astronaut-3 {
+    position: fixed;
+    bottom: 200px;
+    right: 200px;
+}
+
+.margin {
+    margin: 1px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #422E5C;
+  }
+
+  .instructions {
+      font-weight: bold;
+      margin-bottom: 30px;
+  }

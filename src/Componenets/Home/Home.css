@@ -1,6 +1,7 @@
 body {
     background-image: linear-gradient(to right top, #9a66c4, #6a78cf, #3384cc, #008bbe, #0e8faa);
     height: 100vh;
+    width: 100%;
 }
 
 .logo {
