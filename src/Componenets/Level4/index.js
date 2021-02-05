@@ -57,6 +57,16 @@ function Level4() {
         )
     }
 
+     //If player does not type in the correct input
+     function notQuite() {
+        return (
+        <div>
+          <h1>Oops, not quiet! Click the reset button to try again</h1>
+          <button>Get Hint</button>
+        </div>
+        )
+      }
+
 
     const [answer_1, setAnswer_1] = useState("");
     const [isRunning, setIsRunning] = useState(false);
@@ -68,7 +78,7 @@ function Level4() {
                 {isRunning
                     ? answer_1 === "rotate(230deg)"
                         ? youWin()
-                        : <h1>Oops, not quiet! Click the reset button to try again</h1>
+                        : notQuite()
                     : null}
                 <h1 className='instructions'>The rotate() CSS function defines a transformation that rotates an element around a fixed point on the 2D plane, without deforming it. <br /> The Rocket is header in the wrong direction. Rotate the rocket 230 degrees to point it back towards earth.</h1>
                 <CustomizedInput

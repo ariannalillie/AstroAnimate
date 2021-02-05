@@ -19,7 +19,8 @@ const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 2s linear;
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)}
+  1  2s linear;
   margin: 0.5em;
 `;
 
@@ -56,18 +57,19 @@ function Level2() {
     );
   }
 
-  function notQuite() {
-    return(
-    <div>
-      <h1>Oops, not quiet! Click the reset button to try again</h1>
-      <button>Get Hint</button>
-    </div>
-    )
-  }
+    function notQuite() {
+        return (
+        <div>
+          <h1>Oops, not quiet! Click the reset button to try again</h1>
+          <button>Get Hint</button>
+        </div>
+        )
+      }
 
   const [answer_1, setAnswer_1] = useState("");
   const [attemptComplete, setAttemptComplete] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
+
 
   return (
     <div>
