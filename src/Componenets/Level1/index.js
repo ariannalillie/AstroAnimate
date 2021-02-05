@@ -94,7 +94,7 @@ function Level1() {
   }
 
   function notQuite() {
-    return (
+    return(
     <div>
       <h1>Oops, not quiet! Click the reset button to try again</h1>
       <button>Get Hint</button>
