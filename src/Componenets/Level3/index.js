@@ -73,7 +73,7 @@ function Level3() {
             <img src={levelLogo} className="level-logo" />
             <div className="input-container">
                 {isRunning
-                    ? answer_1 === "rotate(230deg)"
+                    ? answer_1.includes("translateY()")
                         ? youWin()
                         : notQuite()
                     : null}
