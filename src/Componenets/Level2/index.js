@@ -40,95 +40,101 @@ const StyledButton = styled.button`
 `;
 
 function Level2() {
-  //Brings winner to the next level
-  const history = useHistory();
-  const routeChange = () => {
-    let path = "/level_3";
-    history.push(path);
-  };
+    //Brings winner to the next level
+    const history = useHistory();
+    const routeChange = () => {
+        let path = "/level_3";
+        history.push(path);
+    };
 
-  //If player types in the correct input
-  function youWin() {
-    return (
-      <div>
-        <h1>You are out of this world!</h1>
-        <button onClick={routeChange}>next level</button>
-      </div>
-    );
-  }
+    //If player types in the correct input
+    function youWin() {
+        return (
+            <div>
+                <h1>You are out of this world!</h1>
+                <button onClick={routeChange}>next level</button>
+            </div>
+        );
+    }
 
     function notQuite() {
         return (
-        <div>
-          <h1>Oops, not quiet! Click the reset button to try again</h1>
-          <button>Get Hint</button>
-        </div>
+            <div>
+                <h1>Oops, not quiet! Click the reset button to try again</h1>
+                <button>Get Hint</button>
+            </div>
         )
-      }
+    }
 
-  const [answer_1, setAnswer_1] = useState("");
-  const [attemptComplete, setAttemptComplete] = useState(false);
-  const [isRunning, setIsRunning] = useState(false);
+    const [answer_1, setAnswer_1] = useState("");
+    const [attemptComplete, setAttemptComplete] = useState(false);
+    const [isRunning, setIsRunning] = useState(false);
+
+    const answerValidator = (num) => {
+        num = +num;
+        return (num <= 250) && (num >= 150)
+    }
 
 
-  return (
-    <div>
-      <img src={levelLogo} className="level-logo" />
-      <div className="input-container">
-        {isRunning && attemptComplete ?
-          answer_1 === "rotate(230deg)" ?
-            youWin()
-            :notQuite()
-         : null}
-        <h1 className="instructions">
-          The rotate() CSS function defines a transformation that rotates an
+    return (
+        <div>
+            <img src={levelLogo} className="level-logo" />
+            <div className="input-container">
+                {isRunning && attemptComplete ?
+                    answerValidator(answer_1.match(/(?<=rotate\()-?\d+(?=deg\))/))
+                        ?
+                        youWin()
+                        : notQuite()
+                    : null}
+                <h1 className="instructions">
+                    The rotate() CSS function defines a transformation that rotates an
           element around a fixed point on the 2D plane, without deforming it.{" "}
-          <br /> The Rocket is header in the wrong direction. Rotate the rocket
+                    <br /> The Rocket is header in the wrong direction. Rotate the rocket
           230 degrees to point it back towards earth.
         </h1>
-        <CustomizedInput
-          value={answer_1}
-          placeholder="rotate(xdeg)"
-          onChange={(e) => {
-            // setIsRunning(false);
-            setAnswer_1(e.target.value);
-          }}
-        />
+                <CustomizedInput
+                    value={answer_1}
+                    placeholder="rotate(xdeg)"
+                    onChange={(e) => {
+                        // setIsRunning(false);
+                        setAnswer_1(e.target.value);
+                    }}
+                />
 
-        <StyledButton
-          buttonType="run"
-          onClick={() => {
-            setAttemptComplete(false);
-            setIsRunning(true);
-            setTimeout(() => {
-              setAttemptComplete(true);
-            }, 2000);
+                <StyledButton
+                    buttonType="run"
+                    onClick={() => {
+                        setAttemptComplete(false);
+                        setIsRunning(true);
+                        setTimeout(() => {
+                            setAttemptComplete(true);
+                        }, 2000);
 
-            // setIsRunning(true);
-          }}
-        >
-          Run
+                        // setIsRunning(true);
+                    }}
+                >
+                    Run
         </StyledButton>
-        <StyledButton
-          buttonType="reset"
-          onClick={() => {
-            setIsRunning(false);
-            setAnswer_1("");
-          }}
-        >
-          Reset
+                <StyledButton
+                    buttonType="reset"
+                    onClick={() => {
+                        setIsRunning(false);
+                        setAnswer_1("");
+                    }}
+                >
+                    Reset
         </StyledButton>
-      </div>
-      <MyStyledImg
-        id="rocket"
-        src={rocket}
-        className="App-logo"
-        myAlt="logo"
-        rotate1={isRunning && answer_1}
-      />
-      <MyStyledImg id="earth" src={earth} className="App-logo" myAlt="logo" />
-    </div>
-  );
+            </div>
+            <MyStyledImg
+                id="rocket"
+                src={rocket}
+                className="App-logo"
+                myAlt="logo"
+                rotate1={isRunning && answer_1}
+            />
+            <MyStyledImg id="earth" src={earth} className="App-logo" myAlt="logo" />
+        </div>
+    );
 }
 
 export default Level2;

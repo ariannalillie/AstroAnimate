@@ -73,7 +73,7 @@ function Level3() {
             <img src={levelLogo} className="level-logo" />
             <div className="input-container">
                 {isRunning
-                    ? answer_1.includes("translateY()")
+                    ? answer_1.match(/(?<=translateY\()-?\d+px(?=\))/)
                         ? youWin()
                         : notQuite()
                     : null}
