@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level2.css";
 import { useHistory } from "react-router-dom";
+import Hint from "../Hint"
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -58,13 +59,14 @@ function Level2() {
     }
 
     function notQuite() {
-        return (
-            <div>
-                <h1>Oops, not quiet! Click the reset button to try again</h1>
-                <button>Get Hint</button>
-            </div>
+        return(
+        <div>
+          <h1>Oops, not quiet! Click the reset button to try again</h1>
+          {/* <button>Get Hint</button> */}
+          <Hint />
+        </div>
         )
-    }
+      }
 
     const [answer_1, setAnswer_1] = useState("");
     const [attemptComplete, setAttemptComplete] = useState(false);

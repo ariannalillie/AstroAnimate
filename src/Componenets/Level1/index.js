@@ -114,7 +114,7 @@ function Level1() {
             ? youWin()
             : notQuite()
           : null}
-        <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
+        <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use translate(x,y) to help the astronaut discover a new planet.</h1>
         <CustomizedInput
           value={answer_1}
           placeholder="translate(x,y)"
