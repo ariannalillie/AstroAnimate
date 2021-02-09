@@ -7,6 +7,7 @@ import levelLogo from "../../Media/Level-1.png";
 import { useHistory } from "react-router-dom";
 import Hint from "../Hint";
 import { isCollide } from "../../Utils";
+import SimplePopper from "../SimplePopper";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -74,7 +75,7 @@ function Level1() {
     return (
       <div>
         <h1>You are out of this world!</h1>
-        <button onClick={routeChange}>next level</button>
+        <button className="next-level-button" onClick={routeChange}>next level</button>
       </div>
     )
   };
@@ -99,15 +100,31 @@ function Level1() {
               ? youWin()
               : notQuite()
             : null}
-          <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use translate(x,y) to help the astronaut discover a new planet.</h1>
-          <CustomizedInput
-            value={answer_1}
-            placeholder="translate(x,y)"
-            onChange={(e) => {
-              setIsRunning(false);
-              setAnswer_1(e.target.value);
-            }}
-          />
+          <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. </h1>
+          <h1 className='instructions'>Use translate(x,y) to help the astronaut discover a new planet.</h1>
+          <h1 className='margin'>. astronaut {"{"}</h1>
+          <div className="label-container">
+          <h1 className='margin'>animation: move</h1>
+          <SimplePopper name="1" message="duration"/>
+          <SimplePopper name="2s" message="delay"/>
+          <SimplePopper name="linear;" message="animates at an even speed"/>
+          </div>
+          <h1 className='instructions'>{"}"}</h1>
+          <h1 className='margin'>@keyframes move {"{"}</h1>
+          <h1 className='margin'>0% {"{ transform: translate(0px, 0px) }"}</h1>
+          <div className="label-container">
+            <h1 className='margin'>100% {"{ tranform: "} </h1>
+            <CustomizedInput
+              value={answer_1}
+              placeholder="translate(x,y)"
+              onChange={(e) => {
+                setIsRunning(false);
+                setAnswer_1(e.target.value);
+              }}
+            />
+            <h1 className='margin'>{"}"}</h1>
+          </div>
+          <h1 className='margin'>{"}"}</h1>
           <StyledButton
             buttonType="run"
             onClick={run}

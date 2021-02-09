@@ -5,7 +5,8 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level2.css";
 import { useHistory } from "react-router-dom";
-import Hint from "../Hint"
+import Hint from "../Hint";
+import SimplePopper from "../SimplePopper";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -41,7 +42,7 @@ const StyledButton = styled.button`
 `;
 
 function Level2() {
-    
+
     //Brings winner to the next level
     const history = useHistory();
     const routeChange = () => {
@@ -54,7 +55,7 @@ function Level2() {
         return (
             <div>
                 <h1>You are out of this world!</h1>
-                <button onClick={routeChange}>next level</button>
+                <button className="next-level-button" onClick={routeChange}>next level</button>
             </div>
         );
     };
@@ -73,11 +74,11 @@ function Level2() {
     const [attemptComplete, setAttemptComplete] = useState(false);
     const [isRunning, setIsRunning] = useState(false);
 
+    //Vallidates whether answer provides in within the correct range
     const answerValidator = (num) => {
         num = +num;
         return (num <= 260) && (num >= 210)
     }
-
 
     return (
         <div>
@@ -89,20 +90,30 @@ function Level2() {
                         youWin()
                         : notQuite()
                     : null}
-                <h1 className="instructions">
-                    The rotate() CSS function defines a transformation that rotates an
-          element around a fixed point on the 2D plane, without deforming it.{" "}
-                    <br /> The Rocket is header in the wrong direction. Rotate the rocket to point it back towards earth.
-        </h1>
-                <CustomizedInput
-                    value={answer_1}
-                    placeholder="rotate(xdeg)"
-                    onChange={(e) => {
-                        // setIsRunning(false);
-                        setAnswer_1(e.target.value);
-                    }}
-                />
-
+                <h1 className="instructions">The rotate(xdeg) CSS function defines a transformation that rotates an element around a fixed point on the 2D plane, without deforming it.</h1>
+                <h1 className="instructions">The Rocket is header in the wrong direction. Rotate the rocket to point it back towards earth.</h1>
+                <h1 className='margin'>. rocket {"{"}</h1>
+                <div className="label-container">
+                    <h1 className='margin'>animation: rotate</h1>
+                    <SimplePopper name="1" message="duration" />
+                    <SimplePopper name="2s" message="delay" />
+                    <SimplePopper name="linear;" message="animates at an even speed" />
+                </div>
+                <h1 className='instructions'>{"}"}</h1>
+                <h1 className='margin'>@keyframes rotate {"{"}</h1>
+                <h1 className='margin'>0% {"{ transform: rotate(0deg) }"}</h1>
+                <div className="label-container">
+                    <h1 className='margin'>100% {"{ tranform: "} </h1>
+                    <CustomizedInput
+                        value={answer_1}
+                        placeholder="rotate(xdeg)"
+                        onChange={(e) => {
+                            setAnswer_1(e.target.value);
+                        }}
+                    />
+                    <h1 className='margin'>{"}"}</h1>
+                </div>
+                <h1 className='margin'>{"}"}</h1>
                 <StyledButton
                     buttonType="run"
                     onClick={() => {
@@ -111,8 +122,6 @@ function Level2() {
                         setTimeout(() => {
                             setAttemptComplete(true);
                         }, 2000);
-
-                        // setIsRunning(true);
                     }}
                 >
                     Run
