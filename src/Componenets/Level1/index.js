@@ -4,7 +4,9 @@ import planet from "../../Media/new-planet.svg";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import levelLogo from "../../Media/Level-1.png";
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Hint from "../Hint";
+import { isCollide } from "../../Utils";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -39,22 +41,6 @@ const StyledButton = styled.button`
   height: 3.2em;
 `;
 
-const isCollide = (a, b) => {
-  var aRect = a && a.getBoundingClientRect();
-  var bRect = b && b.getBoundingClientRect();
-
-  return (
-    aRect &&
-    bRect &&
-    !(
-      aRect.top + aRect.height < bRect.top ||
-      aRect.top > bRect.top + bRect.height ||
-      aRect.left + aRect.width < bRect.left ||
-      aRect.left > bRect.left + bRect.width
-    )
-  );
-};
-
 function Level1() {
   const [answer_1, setAnswer_1] = useState("");
   const [isRunning, setIsRunning] = useState(false);
@@ -70,87 +56,88 @@ function Level1() {
     setTimeout(() => {
       setAttemptComplete(true);
       setIsCollisionDetected
-      (astronautElement &&
-        planetElement &&
-        isCollide(astronautElement, planetElement));
+        (astronautElement &&
+          planetElement &&
+          isCollide(astronautElement, planetElement));
     }, 2000)
   }
 
   //Brings winner to the next level
   const history = useHistory();
-  const routeChange = () =>{
-      let path = '/level_2';
-      history.push(path);
-    }
+  const routeChange = () => {
+    let path = '/level_2';
+    history.push(path);
+  };
 
   //If player types in the correct input
-  function youWin() {
+  const youWin = () => {
     return (
       <div>
         <h1>You are out of this world!</h1>
         <button onClick={routeChange}>next level</button>
       </div>
     )
-  }
+  };
 
+  //If player does not type in the correct input
   function notQuite() {
-    return(
-    <div>
-      <h1>Oops, not quiet! Click the reset button to try again</h1>
-      <button>Get Hint</button>
-    </div>
+    return (
+      <div>
+        <h1>Oops, not quiet! Click the reset button to try again</h1>
+        <Hint message="This is your level 1 hint" />
+      </div>
     )
-  }
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={levelLogo} className="level-logo" />
         <div className="input-container">
-        {isRunning && attemptComplete
-          ? isCollisionDetected
-            ? youWin()
-            : notQuite()
-          : null}
-        <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use transform to help the astronaut discover a new planet.</h1>
-        <CustomizedInput
-          value={answer_1}
-          placeholder="translate(x,y)"
-          onChange={(e) => {
-            setIsRunning(false);
-            setAnswer_1(e.target.value);
-          }}
-        />
-        <StyledButton
-          buttonType="run"
-          onClick={run}
-        >
-          Run
+          {isRunning && attemptComplete
+            ? isCollisionDetected
+              ? youWin()
+              : notQuite()
+            : null}
+          <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. <br /> Use translate(x,y) to help the astronaut discover a new planet.</h1>
+          <CustomizedInput
+            value={answer_1}
+            placeholder="translate(x,y)"
+            onChange={(e) => {
+              setIsRunning(false);
+              setAnswer_1(e.target.value);
+            }}
+          />
+          <StyledButton
+            buttonType="run"
+            onClick={run}
+          >
+            Run
         </StyledButton>
-        <StyledButton
-          buttonType="reset"
-          onClick={() => {
-            setIsRunning(false);
-            setAnswer_1("");
-          }}
-        >
-          Reset
+          <StyledButton
+            buttonType="reset"
+            onClick={() => {
+              setIsRunning(false);
+              setAnswer_1("");
+            }}
+          >
+            Reset
         </StyledButton>
 
-        <MyStyledImg
-          id="astronaut"
-          src={astronaut}
-          className="App-logo"
-          myAlt="logo"
-          rotate1={isRunning && answer_1}
-        />
+          <MyStyledImg
+            id="astronaut"
+            src={astronaut}
+            className="App-logo"
+            myAlt="logo"
+            rotate1={isRunning && answer_1}
+          />
 
-        <MyStyledImg
-          id="planet"
-          src={planet}
-          className="App-logo"
-          myAlt="logo"
-        />
+          <MyStyledImg
+            id="planet"
+            src={planet}
+            className="App-logo"
+            myAlt="logo"
+          />
         </div>
       </header>
     </div>

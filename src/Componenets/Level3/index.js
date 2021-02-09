@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level3.css";
 import { useHistory } from "react-router-dom";
+import Hint from "../Hint"
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
 0%   { transform: translateY(0px); }
@@ -37,12 +38,13 @@ const StyledButton = styled.button`
 `;
 
 function Level3() {
+    
     //Brings winner to the next level
     const history = useHistory();
     const routeChange = () => {
         let path = '/level_4';
         history.push(path);
-    }
+    };
 
     //If player types in the correct input
     function youWin() {
@@ -52,17 +54,17 @@ function Level3() {
                 <button onClick={routeChange}>next level</button>
             </div>
         )
-    }
+    };
 
     //If player does not type in the correct input
     function notQuite() {
         return (
-        <div>
-          <h1>Oops, not quiet! Click the reset button to try again</h1>
-          <button>Get Hint</button>
-        </div>
+            <div>
+                <h1>Oops, not quiet! Click the reset button to try again</h1>
+                <Hint message="This is your level 3 hint" />
+            </div>
         )
-      }
+    };
 
 
     const [answer_1, setAnswer_1] = useState("");
@@ -85,15 +87,15 @@ function Level3() {
                 <h1 className='margin'>@keyframes bounce {"{"}</h1>
                 <h1 className='margin'>0% {"{ transform: translateY(0); }"}</h1>
                 <div className="label-container">
-                <h1 className='margin'>50%</h1>
-                <CustomizedInput
-                    value={answer_1}
-                    placeholder="translateY(xpx)"
-                    onChange={(e) => {
-                        // setIsRunning(false);
-                        setAnswer_1(e.target.value);
-                    }}
-                />
+                    <h1 className='margin'>50%</h1>
+                    <CustomizedInput
+                        value={answer_1}
+                        placeholder="translateY(xpx)"
+                        onChange={(e) => {
+                            // setIsRunning(false);
+                            setAnswer_1(e.target.value);
+                        }}
+                    />
                 </div>
                 <h1 className='margin'>100% {"{ transform: translateY(0); }"}</h1>
                 <h1 className='margin'>{"}"}</h1>

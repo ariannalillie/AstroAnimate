@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level2.css";
 import { useHistory } from "react-router-dom";
+import Hint from "../Hint"
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -40,6 +41,7 @@ const StyledButton = styled.button`
 `;
 
 function Level2() {
+    
     //Brings winner to the next level
     const history = useHistory();
     const routeChange = () => {
@@ -55,16 +57,17 @@ function Level2() {
                 <button onClick={routeChange}>next level</button>
             </div>
         );
-    }
+    };
 
+    //If player does not type in the correct input
     function notQuite() {
         return (
             <div>
                 <h1>Oops, not quiet! Click the reset button to try again</h1>
-                <button>Get Hint</button>
+                <Hint message="This is your level 2 hint" />
             </div>
         )
-    }
+    };
 
     const [answer_1, setAnswer_1] = useState("");
     const [attemptComplete, setAttemptComplete] = useState(false);
@@ -72,7 +75,7 @@ function Level2() {
 
     const answerValidator = (num) => {
         num = +num;
-        return (num <= 250) && (num >= 150)
+        return (num <= 260) && (num >= 210)
     }
 
 
@@ -89,8 +92,7 @@ function Level2() {
                 <h1 className="instructions">
                     The rotate() CSS function defines a transformation that rotates an
           element around a fixed point on the 2D plane, without deforming it.{" "}
-                    <br /> The Rocket is header in the wrong direction. Rotate the rocket
-          230 degrees to point it back towards earth.
+                    <br /> The Rocket is header in the wrong direction. Rotate the rocket to point it back towards earth.
         </h1>
                 <CustomizedInput
                     value={answer_1}
