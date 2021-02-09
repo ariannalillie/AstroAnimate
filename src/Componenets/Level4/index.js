@@ -40,6 +40,7 @@ const StyledButton = styled.button`
 `;
 
 function Level4() {
+
     //Brings winner to the next level
     const history = useHistory();
     const routeChange = () => {
@@ -55,17 +56,17 @@ function Level4() {
                 <button onClick={routeChange}>next level</button>
             </div>
         );
-    }
+    };
 
+    //If player does not type in the correct input
     function notQuite() {
         return (
             <div>
                 <h1>Oops, not quiet! Click the reset button to try again</h1>
-                {/* <button>Get Hint</button> */}
-                <Hint />
+                <Hint message="This is your level 4 hint" />
             </div>
-        )
-    }
+        );
+    };
 
     const [answer_1, setAnswer_1] = useState("");
     const [answer_2, setAnswer_2] = useState("");

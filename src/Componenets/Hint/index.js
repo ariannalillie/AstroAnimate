@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
-// import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from "@material-ui/core/DialogContentText";
 import styled from "styled-components";
 
 
@@ -16,7 +14,7 @@ const StyledButton = styled.button`
   height: 3.2em;
 `;
 
-function Hint() {
+function Hint({message}) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -35,7 +33,7 @@ function Hint() {
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogContent>This is your hint</DialogContent>
+                <DialogContent>{message}</DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Got it!

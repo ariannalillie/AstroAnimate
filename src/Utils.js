@@ -1,3 +1,4 @@
+//Used to check if two page element are touching
 export const isCollide = (a, b) => {
     var aRect = a && a.getBoundingClientRect();
     var bRect = b && b.getBoundingClientRect();
