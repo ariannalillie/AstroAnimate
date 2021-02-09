@@ -91,7 +91,7 @@ function Level3() {
                 </div>
                 <h1 className='instructions'>{"}"}</h1>
                 <h1 className='margin'>@keyframes bounce {"{"}</h1>
-                <h1 className='margin'>0% {"{ transform: translateY(0); }"}</h1>
+                <h1 className='margin'>0% {"{ transform: translateY(0px); }"}</h1>
                 <div className="label-container">
                     <h1 className='margin'>50% {"{ tranform: "}</h1>
                     <CustomizedInput
@@ -103,7 +103,7 @@ function Level3() {
                     />
                     <h1 className='margin'>{"}"}</h1>
                 </div>
-                <h1 className='margin'>100% {"{ transform: translateY(0); }"}</h1>
+                <h1 className='margin'>100% {"{ transform: translateY(0px); }"}</h1>
                 <h1 className='margin'>{"}"}</h1>
 
                 <StyledButton

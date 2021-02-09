@@ -4,6 +4,7 @@ import planet from "../../Media/new-planet.svg";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import levelLogo from "../../Media/Level-1.png";
+// import levelLogo from "../../Media/howtoplay.png";
 import { useHistory } from "react-router-dom";
 import Hint from "../Hint";
 import { isCollide } from "../../Utils";

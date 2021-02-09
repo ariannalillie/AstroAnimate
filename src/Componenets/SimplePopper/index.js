@@ -5,9 +5,10 @@ import "./SimplePopper.css"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    border: '1px solid',
+    border: "none",
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "white",
+    borderRadius: "5px",
   },
 }));
 
