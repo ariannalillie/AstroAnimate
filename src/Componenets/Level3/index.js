@@ -5,7 +5,8 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level3.css";
 import { useHistory } from "react-router-dom";
-import Hint from "../Hint"
+import Hint from "../Hint";
+import SimplePopper from "../SimplePopper";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
 0%   { transform: translateY(0px); }
@@ -82,7 +83,12 @@ function Level3() {
                 <h1 className='instructions'>The bounce animation, uses translateY(x) and keyframes to move your element up and down on the y-axis</h1>
                 <h1 className='instructions'>There is no gravity on the moon, so use translateY to make the astronaut bounce.</h1>
                 <h1 className='margin'>. astronaut {"{"}</h1>
-                <h1 className='margin'>animation: bounce infinite 2s linear;</h1>
+                <div className="label-container">
+                    <h1 className='margin'>animation: bounce</h1>
+                    <SimplePopper name="infinite" message="duration" />
+                    <SimplePopper name="2s" message="delay" />
+                    <SimplePopper name="linear;" message="animates at an even speed" />
+                </div>
                 <h1 className='instructions'>{"}"}</h1>
                 <h1 className='margin'>@keyframes bounce {"{"}</h1>
                 <h1 className='margin'>0% {"{ transform: translateY(0); }"}</h1>

@@ -5,7 +5,8 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level2.css";
 import { useHistory } from "react-router-dom";
-import Hint from "../Hint"
+import Hint from "../Hint";
+import SimplePopper from "../SimplePopper";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -92,7 +93,12 @@ function Level2() {
                 <h1 className="instructions">The rotate(xdeg) CSS function defines a transformation that rotates an element around a fixed point on the 2D plane, without deforming it.</h1>
                 <h1 className="instructions">The Rocket is header in the wrong direction. Rotate the rocket to point it back towards earth.</h1>
                 <h1 className='margin'>. rocket {"{"}</h1>
-                <h1 className='margin'>animation: rotate 1 2s linear;</h1>
+                <div className="label-container">
+                    <h1 className='margin'>animation: rotate</h1>
+                    <SimplePopper name="1" message="duration" />
+                    <SimplePopper name="2s" message="delay" />
+                    <SimplePopper name="linear;" message="animates at an even speed" />
+                </div>
                 <h1 className='instructions'>{"}"}</h1>
                 <h1 className='margin'>@keyframes rotate {"{"}</h1>
                 <h1 className='margin'>0% {"{ transform: rotate(0deg) }"}</h1>
@@ -105,9 +111,9 @@ function Level2() {
                             setAnswer_1(e.target.value);
                         }}
                     />
-            <h1 className='margin'>{"}"}</h1>
-          </div>
-          <h1 className='margin'>{"}"}</h1>
+                    <h1 className='margin'>{"}"}</h1>
+                </div>
+                <h1 className='margin'>{"}"}</h1>
                 <StyledButton
                     buttonType="run"
                     onClick={() => {
