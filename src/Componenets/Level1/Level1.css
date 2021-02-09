@@ -2,6 +2,7 @@
     font-size: 20px;
     color: #422E5C;
     font-weight: bold;
+    margin-bottom: 20px;
   }
 
   #astronaut {
@@ -11,9 +12,8 @@
   }
 
 #planet {
-    position: relative;
-    top: 300px;
-    left: 850px;
+    position: fixed;
+    bottom: 300px;
     animation: spin 3s linear infinite;
 }
 
@@ -47,4 +47,12 @@
 .level-logo {
     width: 400px;
     height: auto;
+}
+
+.next-level-button {
+    border-radius: 4px;
+    padding: 1em 1em 2.5em 1em;
+    margin: 0.5em;
+    height: 3.2em;
+    background-color: green;
 }

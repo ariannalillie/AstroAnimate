@@ -38,7 +38,7 @@ const StyledButton = styled.button`
 `;
 
 function Level3() {
-    
+
     //Brings winner to the next level
     const history = useHistory();
     const routeChange = () => {
@@ -51,7 +51,7 @@ function Level3() {
         return (
             <div>
                 <h1>You are out of this world!</h1>
-                <button onClick={routeChange}>next level</button>
+                <button className="next-level-button" onClick={routeChange}>next level</button>
             </div>
         )
     };
@@ -79,23 +79,23 @@ function Level3() {
                         ? youWin()
                         : notQuite()
                     : null}
-                <h1 className='instructions'>The bounce animation, uses translate(y) and keyframes to move your element up and down on the y-axis</h1>
-                <h1 className='instructions'>There is no gravity on the moon, so use translate to make the astronaut bounce.</h1>
-                <h1 className='margin'>.astronaut {"{"}</h1>
+                <h1 className='instructions'>The bounce animation, uses translateY(x) and keyframes to move your element up and down on the y-axis</h1>
+                <h1 className='instructions'>There is no gravity on the moon, so use translateY to make the astronaut bounce.</h1>
+                <h1 className='margin'>. astronaut {"{"}</h1>
                 <h1 className='margin'>animation: bounce infinite 2s linear;</h1>
-                <h1 className='margin'>{"}"}</h1>
+                <h1 className='instructions'>{"}"}</h1>
                 <h1 className='margin'>@keyframes bounce {"{"}</h1>
                 <h1 className='margin'>0% {"{ transform: translateY(0); }"}</h1>
                 <div className="label-container">
-                    <h1 className='margin'>50%</h1>
+                    <h1 className='margin'>50% {"{ tranform: "}</h1>
                     <CustomizedInput
                         value={answer_1}
                         placeholder="translateY(xpx)"
                         onChange={(e) => {
-                            // setIsRunning(false);
                             setAnswer_1(e.target.value);
                         }}
                     />
+                    <h1 className='margin'>{"}"}</h1>
                 </div>
                 <h1 className='margin'>100% {"{ transform: translateY(0); }"}</h1>
                 <h1 className='margin'>{"}"}</h1>
