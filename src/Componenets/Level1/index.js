@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import levelLogo from "../../Media/Level-1.png";
 import {  useHistory } from "react-router-dom";
+import Hint from "../Hint"
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -97,7 +98,8 @@ function Level1() {
     return(
     <div>
       <h1>Oops, not quiet! Click the reset button to try again</h1>
-      <button>Get Hint</button>
+      {/* <button>Get Hint</button> */}
+      <Hint />
     </div>
     )
   }

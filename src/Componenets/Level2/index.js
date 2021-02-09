@@ -72,7 +72,7 @@ function Level2() {
 
     const answerValidator = (num) => {
         num = +num;
-        return (num <= 250) && (num >= 150)
+        return (num <= 260) && (num >= 210)
     }
 
 
@@ -89,8 +89,7 @@ function Level2() {
                 <h1 className="instructions">
                     The rotate() CSS function defines a transformation that rotates an
           element around a fixed point on the 2D plane, without deforming it.{" "}
-                    <br /> The Rocket is header in the wrong direction. Rotate the rocket
-          230 degrees to point it back towards earth.
+                    <br /> The Rocket is header in the wrong direction. Rotate the rocket to point it back towards earth.
         </h1>
                 <CustomizedInput
                     value={answer_1}
