@@ -16,42 +16,39 @@ import HowToPlay from "./Componenets/HowToPlay";
 function App() {
   return (
     <>
-    <Route exact path="/" >
-    <Home />
-  </Route>
-  <Route path="/how_to_play" >
-      <HowToPlay />
-    </Route>
+      <Route exact path="/" >
+        <Home />
+      </Route>
       <Route path="/level_1" >
-      <Level1 />
-    </Route>
-    <Route path="/level_2" >
-      <Level2 />
-    </Route>
-    <Route path="/level_3" >
-      <Level3 />
-    </Route>
-    <Route path="/level_4" >
-      <Level4 />
-    </Route>
-    <Route path="/level_5" >
-      <Level5 />
-    </Route>
-    <Route path="/level_6" >
-      <Level6 />
-    </Route>
-    <Route path="/level_7" >
-      <Level7 />
-    </Route>
-    <Route path="/level_8" >
-      <Level8 />
-    </Route>
-    <Route path="/level_9" >
-      <Level9 />
-    </Route>
-    <Route path="/level_10" >
-      <Level10 />
-    </Route>
+        <Level1 />
+      </Route>
+      <Route path="/level_2" >
+        <Level2 />
+      </Route>
+      <Route path="/level_3" >
+        <Level3 />
+      </Route>
+      <Route path="/level_4" >
+        <Level4 />
+      </Route>
+      <Route path="/level_5" >
+        <Level5 />
+      </Route>
+      <Route path="/level_6" >
+        <Level6 />
+      </Route>
+      <Route path="/level_7" >
+        <Level7 />
+      </Route>
+      <Route path="/level_8" >
+        <Level8 />
+      </Route>
+      <Route path="/level_9" >
+        <Level9 />
+      </Route>
+      <Route path="/level_10" >
+        <Level10 />
+      </Route>
     </>
   );
 }

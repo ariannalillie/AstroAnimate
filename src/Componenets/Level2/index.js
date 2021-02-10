@@ -7,6 +7,7 @@ import "./Level2.css";
 import { useHistory } from "react-router-dom";
 import Hint from "../Hint";
 import SimplePopper from "../SimplePopper";
+import HowToPlay from "../HowToPlay";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -114,6 +115,7 @@ function Level2() {
                     <h1 className='margin'>{"}"}</h1>
                 </div>
                 <h1 className='margin'>{"}"}</h1>
+                <div className="button-container">
                 <StyledButton
                     buttonType="run"
                     onClick={() => {
@@ -135,6 +137,8 @@ function Level2() {
                 >
                     Reset
         </StyledButton>
+                < HowToPlay className="instruction-button" />
+                </div>
             </div>
             <MyStyledImg
                 id="rocket"
