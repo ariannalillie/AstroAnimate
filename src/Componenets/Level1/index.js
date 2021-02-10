@@ -4,11 +4,11 @@ import planet from "../../Media/new-planet.svg";
 import { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import levelLogo from "../../Media/Level-1.png";
-// import levelLogo from "../../Media/howtoplay.png";
 import { useHistory } from "react-router-dom";
 import Hint from "../Hint";
 import { isCollide } from "../../Utils";
 import SimplePopper from "../SimplePopper";
+import HowToPlay from "../HowToPlay";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
   from {
@@ -126,6 +126,7 @@ function Level1() {
             <h1 className='margin'>{"}"}</h1>
           </div>
           <h1 className='margin'>{"}"}</h1>
+          <div className="button-container">
           <StyledButton
             buttonType="run"
             onClick={run}
@@ -141,6 +142,9 @@ function Level1() {
           >
             Reset
         </StyledButton>
+        < HowToPlay className="instruction-button"/>
+          </div>
+
 
           <MyStyledImg
             id="astronaut"

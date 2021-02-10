@@ -1,4 +1,15 @@
-.play-image {
-    height: 100vh;
-    width: 100%;
+.modal-content {
+width: 800px;
+height: auto;
+border: none;
+padding: 0;
+margin: 0;
+}
+
+.how-to-play-image {
+    width: 550px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    border: none;
 }

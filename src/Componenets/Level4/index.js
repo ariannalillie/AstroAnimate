@@ -8,6 +8,7 @@ import "./Level4.css";
 import { useHistory } from "react-router-dom";
 import { isCollide } from "../../Utils";
 import Hint from "../Hint"
+import HowToPlay from "../HowToPlay";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
     0%   { transform: translate(0px); }
@@ -127,46 +128,48 @@ function Level4() {
                         setAnswer_2(e.target.value);
                     }}
                 />
-
-                <StyledButton
-                    buttonType="run"
-                    onClick={() => {
-                        setIsRunning(true);
-                        const interval1 = setInterval(() => {
-                            if (rocketElement && earthElement) {
-                                if (isCollide(rocketElement, earthElement)) {
-                                    clearInterval(interval1);
-                                    setIsCollisionDetected_1(true);
+                <div className="button-container">
+                    <StyledButton
+                        buttonType="run"
+                        onClick={() => {
+                            setIsRunning(true);
+                            const interval1 = setInterval(() => {
+                                if (rocketElement && earthElement) {
+                                    if (isCollide(rocketElement, earthElement)) {
+                                        clearInterval(interval1);
+                                        setIsCollisionDetected_1(true);
+                                    }
                                 }
-                            }
-                        }, 200);
+                            }, 200);
 
-                        const interval2 = setInterval(() => {
-                            if (rocketElement && planetElement) {
-                                if (isCollide(rocketElement, planetElement)) {
-                                    clearInterval(interval2);
-                                    setIsCollisionDetected_2(true);
+                            const interval2 = setInterval(() => {
+                                if (rocketElement && planetElement) {
+                                    if (isCollide(rocketElement, planetElement)) {
+                                        clearInterval(interval2);
+                                        setIsCollisionDetected_2(true);
+                                    }
                                 }
-                            }
-                        }, 200);
+                            }, 200);
 
-                        setTimeout(() => {
-                            setAttemptComplete(true);
-                        }, 5000);
-                    }}
-                >
-                    Run
+                            setTimeout(() => {
+                                setAttemptComplete(true);
+                            }, 5000);
+                        }}
+                    >
+                        Run
         </StyledButton>
-                <StyledButton
-                    buttonType="reset"
-                    onClick={() => {
-                        setIsRunning(false);
-                        setAnswer_1("");
-                        setAnswer_2("");
-                    }}
-                >
-                    Reset
+                    <StyledButton
+                        buttonType="reset"
+                        onClick={() => {
+                            setIsRunning(false);
+                            setAnswer_1("");
+                            setAnswer_2("");
+                        }}
+                    >
+                        Reset
         </StyledButton>
+                    < HowToPlay className="instruction-button" />
+                </div>
             </div>
             <MyStyledImg
                 id="rocket"
