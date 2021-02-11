@@ -13,7 +13,6 @@
 
 #planet {
     position: fixed;
-    bottom: 300px;
     animation: spin 3s linear infinite;
 }
 
@@ -65,5 +64,5 @@
 
 .button-container {
     display: flex;
-    
+
 }
