@@ -11,8 +11,8 @@ body {
 
 #moon {
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: -400px;
+    width: 105%;
 }
 
 #astronaut-3 {
@@ -27,5 +27,3 @@ body {
     font-size: 20px;
     color: #422E5C;
   }
-
-

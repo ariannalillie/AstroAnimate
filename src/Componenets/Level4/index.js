@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import { isCollide } from "../../Utils";
 import Hint from "../Hint"
 import HowToPlay from "../HowToPlay";
+import SimplePopper from "../SimplePopper";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
     0%   { transform: translate(0px); }
@@ -108,9 +109,19 @@ function Level4() {
                         :
                         notQuite()
                     : null}
-                <h1 className="instructions">
-                    Bring the rocket to both planets.
-        </h1>
+                <h1 className="instructions"> Bring the rocket to both planets.</h1>
+                <h1 className='margin'>. astronaut {"{"}</h1>
+                <div className="label-container">
+                    <h1 className='margin'>animation: move</h1>
+                    <SimplePopper name="1" message="duration" />
+                    <SimplePopper name="2s" message="delay" />
+                    <SimplePopper name="linear;" message="animates at an even speed" />
+                </div>
+                <h1 className='instructions'>{"}"}</h1>
+                <h1 className='margin'>@keyframes move {"{"}</h1>
+                <h1 className='margin'>0% {"{ transform: translateY(0px); }"}</h1>
+                <div className="label-container">
+                    <h1 className='margin'>50% {"{ tranform: "}</h1>
                 <CustomizedInput
                     value={answer_1}
                     placeholder="translate(x,y)"
@@ -119,6 +130,10 @@ function Level4() {
                         setAnswer_1(e.target.value);
                     }}
                 />
+                                    <h1 className='margin'>{"}"}</h1>
+                </div>
+                <div className="label-container">
+                    <h1 className='margin'>100% {"{ tranform: "}</h1>
 
                 <CustomizedInput
                     value={answer_2}
@@ -128,6 +143,8 @@ function Level4() {
                         setAnswer_2(e.target.value);
                     }}
                 />
+                                         <h1 className='margin'>{"}"}</h1>
+                </div>
                 <div className="button-container">
                     <StyledButton
                         buttonType="run"

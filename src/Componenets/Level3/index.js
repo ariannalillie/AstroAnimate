@@ -1,6 +1,6 @@
 import levelLogo from "../../Media/Level-3.png";
 import astronaut from "../../Media/astronaut.svg";
-import moon from "../../Media/temp-moon.svg";
+import moon from "../../Media/moon.png";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import "./Level3.css";
@@ -134,12 +134,12 @@ function Level3() {
                 myAlt="logo"
                 rotate1={isRunning && answer_1}
             />
-            {/* <MyStyledImg
+            <MyStyledImg
                 id="moon"
                 src={moon}
                 className="App-logo"
                 myAlt="logo"
-            /> */}
+            />
         </div>
     )
 }
