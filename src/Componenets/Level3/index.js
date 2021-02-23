@@ -1,25 +1,29 @@
-import levelLogo from "../../Media/Level-3.png";
-import astronaut from "../../Media/astronaut.svg";
-import moon from "../../Media/moon.png";
-import styled, { keyframes } from "styled-components";
-import { useState } from "react";
 import "./Level3.css";
+import astronaut from "../../Media/astronaut.svg";
+import planet from "../../Media/new-planet.svg";
+import { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import levelLogo from "../../Media/Level-3.png";
 import { useHistory } from "react-router-dom";
 import Hint from "../Hint";
+import { isCollide } from "../../Utils";
 import SimplePopper from "../SimplePopper";
 import HowToPlay from "../HowToPlay";
 
 const taskAnimation = (rotate1, rotate2) => keyframes`
-0%   { transform: translateY(0px); }
-50%  { transform: ${rotate1}; }
-100% { transform: translateY(0px); }
+  from {
+    transform: ${rotate2};
+  }
+  to {
+    transform: ${rotate1};
+  }
 `;
 
 const MyStyledImg = styled.img`
   src: ${(props) => props.src};
   classname: ${(props) => props.className};
   alt: ${(props) => props.myAlt};
-  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} infinite
+  animation: ${(props) => taskAnimation(props.rotate1, props.rotate2)} 1
     2s linear;
   margin: 0.5em;
 `;
@@ -40,108 +44,125 @@ const StyledButton = styled.button`
 `;
 
 function Level3() {
+  const [answer_1, setAnswer_1] = useState("");
+  const [isRunning, setIsRunning] = useState(false);
+  const [attemptComplete, setAttemptComplete] = useState(false);
+  const [isCollisionDetected, setIsCollisionDetected] = useState(false);
 
-    //Brings winner to the next level
-    const history = useHistory();
-    const routeChange = () => {
-        let path = '/level_4';
-        history.push(path);
-    };
+  const astronautElement = document.getElementById("astronaut2");
+  const planetElement = document.getElementById("planet2");
 
-    //If player types in the correct input
-    function youWin() {
-        return (
-            <div>
-                <h1>You are out of this world!</h1>
-                <button className="next-level-button" onClick={routeChange}>next level</button>
-            </div>
-        )
-    };
+  function run() {
+    setAttemptComplete(false);
+    setIsRunning(true);
+    setTimeout(() => {
+      setAttemptComplete(true);
+      setIsCollisionDetected
+        (astronautElement &&
+          planetElement &&
+          isCollide(astronautElement, planetElement));
+    }, 2000)
+  }
 
-    //If player does not type in the correct input
-    function notQuite() {
-        return (
-            <div>
-                <h1>Oops, not quiet! Click the reset button to try again</h1>
-                <Hint message="This is your level 3 hint" />
-            </div>
-        )
-    };
+  //Brings winner to the next level
+  const history = useHistory();
+  const routeChange = () => {
+    let path = '/level_4';
+    history.push(path);
+  };
 
-
-    const [answer_1, setAnswer_1] = useState("");
-    const [isRunning, setIsRunning] = useState(false);
-
+  //If player types in the correct input
+  const youWin = () => {
     return (
-        <div>
-            <img src={levelLogo} className="level-logo" />
-            <div className="input-container">
-                {isRunning
-                    ? answer_1.match(/(?<=translateY\()-?\d+px(?=\))/)
-                        ? youWin()
-                        : notQuite()
-                    : null}
-                <h1 className='instructions'>The bounce animation, uses translateY(x) and keyframes to move your element up and down on the y-axis</h1>
-                <h1 className='instructions'>There is no gravity on the moon, so use translateY to make the astronaut bounce.</h1>
-                <h1 className='margin'>. astronaut {"{"}</h1>
-                <div className="label-container">
-                    <h1 className='margin'>animation: bounce</h1>
-                    <SimplePopper name="infinite" message="duration" />
-                    <SimplePopper name="2s" message="delay" />
-                    <SimplePopper name="linear;" message="animates at an even speed" />
-                </div>
-                <h1 className='instructions'>{"}"}</h1>
-                <h1 className='margin'>@keyframes bounce {"{"}</h1>
-                <h1 className='margin'>0% {"{ transform: translateY(0px); }"}</h1>
-                <div className="label-container">
-                    <h1 className='margin'>50% {"{ tranform: "}</h1>
-                    <CustomizedInput
-                        value={answer_1}
-                        placeholder="translateY(xpx)"
-                        onChange={(e) => {
-                            setAnswer_1(e.target.value);
-                        }}
-                    />
-                    <h1 className='margin'>{"}"}</h1>
-                </div>
-                <h1 className='margin'>100% {"{ transform: translateY(0px); }"}</h1>
-                <h1 className='margin'>{"}"}</h1>
-                <div className="button-container">
-                <StyledButton
-                    buttonType="run"
-                    onClick={() => {
-                        setIsRunning(true);
-                    }}
-                >
-                    Run
-        </StyledButton>
-                <StyledButton
-                    buttonType="reset"
-                    onClick={() => {
-                        setIsRunning(false);
-                        setAnswer_1("");
-                    }}
-                >
-                    Reset
-        </StyledButton>
-        < HowToPlay className="instruction-button" />
-                </div>
-            </div>
-            <MyStyledImg
-                id="astronaut-3"
-                src={astronaut}
-                className="App-logo"
-                myAlt="logo"
-                rotate1={isRunning && answer_1}
-            />
-            <MyStyledImg
-                id="moon"
-                src={moon}
-                className="App-logo"
-                myAlt="logo"
-            />
-        </div>
+      <div>
+        <h1>You are out of this world!</h1>
+        <button className="next-level-button" onClick={routeChange}>next level</button>
+      </div>
     )
-}
+  };
 
+  //If player does not type in the correct input
+  function notQuite() {
+    return (
+      <div>
+        <h1>Oops, not quiet! Click the reset button to try again</h1>
+        <Hint message="This is your level 3 hint" />
+      </div>
+    )
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={levelLogo} className="level-logo" />
+        <div className="input-container">
+          {isRunning && attemptComplete
+            ? isCollisionDetected
+              ? youWin()
+              : notQuite()
+            : null}
+          <h1 className='instructions'>The translate(x,y) CSS function repositions an element in the horizontal and/or vertical directions. </h1>
+          <h1 className='instructions'>Use translate(x,y) to help the astronaut discover a new planet, by sending the astronaut in the other direction.</h1>
+          <h1 className='margin'>. astronaut {"{"}</h1>
+          <div className="label-container">
+          <h1 className='margin'>animation: move</h1>
+          <SimplePopper name="1" message="duration"/>
+          <SimplePopper name="2s" message="delay"/>
+          <SimplePopper name="linear;" message="animates at an even speed"/>
+          </div>
+          <h1 className='instructions'>{"}"}</h1>
+          <h1 className='margin'>@keyframes move {"{"}</h1>
+          <h1 className='margin'>0% {"{ transform: translate(0px, 0px) }"}</h1>
+          <div className="label-container">
+            <h1 className='margin'>100% {"{ tranform: "} </h1>
+            <CustomizedInput
+              value={answer_1}
+              placeholder="translate(x,y)"
+              onChange={(e) => {
+                setIsRunning(false);
+                setAnswer_1(e.target.value);
+              }}
+            />
+            <h1 className='margin'>{"}"}</h1>
+          </div>
+          <h1 className='margin'>{"}"}</h1>
+          <div className="button-container">
+          <StyledButton
+            buttonType="run"
+            onClick={run}
+          >
+            Run
+        </StyledButton>
+          <StyledButton
+            buttonType="reset"
+            onClick={() => {
+              setIsRunning(false);
+              setAnswer_1("");
+            }}
+          >
+            Reset
+        </StyledButton>
+        < HowToPlay className="instruction-button"/>
+          </div>
+
+
+          <MyStyledImg
+            id="astronaut2"
+            src={astronaut}
+            className="App-logo"
+            myAlt="logo"
+            rotate1={isRunning && answer_1}
+          />
+
+          <MyStyledImg
+            id="planet2"
+            src={planet}
+            className="App-logo"
+            myAlt="logo"
+          />
+        </div>
+      </header>
+    </div>
+  );
+}
 export default Level3;

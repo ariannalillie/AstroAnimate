@@ -55,7 +55,7 @@ function Level4() {
         return (
             <div>
                 <h1>You are out of this world!</h1>
-                <button onClick={routeChange}>next level</button>
+                <button className="next-level-button" onClick={routeChange}>next level</button>
             </div>
         );
     };

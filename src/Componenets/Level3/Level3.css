@@ -1,29 +1,12 @@
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+ #astronaut2 {
+    position: absolute;
+    top: 50px;
+    right: 800px;;
 }
 
-.label-container {
-    display: flex;
-    align-items: center;
-}
-
-#moon {
+#planet2 {
     position: fixed;
-    bottom: -400px;
-    width: 105%;
+    right: 50px;
+    animation: spin 3s linear infinite;
 }
-
-#astronaut-3 {
-    position: fixed;
-    bottom: 200px;
-    right: 200px;
-}
-
-.margin {
-    margin: 1px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #422E5C;
-  }
