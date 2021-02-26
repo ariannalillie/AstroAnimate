@@ -85,7 +85,7 @@ function Level3() {
   function notQuite() {
     return (
       <div>
-        <h1>Oops, not quiet! Click the reset button to try again</h1>
+        <h1>Oops, not quite! Click the reset button to try again</h1>
         <Hint message="This is your level 3 hint" />
       </div>
     )

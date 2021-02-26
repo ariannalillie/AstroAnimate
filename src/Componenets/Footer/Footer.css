@@ -1,0 +1,30 @@
+.footer-container {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+  }
+  @media (min-width: 769px) {
+    .footer-container {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .footer-container_title {
+      margin-bottom: 0;
+    }
+  }
+
+  .icons a:not(:last-child) {
+    margin-right: 1.5rem;
+    fill: white;
+  }
+
+  .icon {
+     fill: white;
+  }
+
+ 

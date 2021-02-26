@@ -1,7 +1,8 @@
 import "./Home.css";
 import {  useHistory } from "react-router-dom";
 import logo from "../../Media/logo.png";
-import homeGraphic from "../../Media/home-page-graphic.svg"
+import homeGraphic from "../../Media/home-page-graphic.svg";
+import Footer from "../Footer";
 
 function Home() {
     const history = useHistory();
@@ -32,6 +33,9 @@ function Home() {
                 <button className="start-game-button" onClick={routeChange}>Start Game</button>
             </div>
             </div>
+            {/* <footer>
+            <Footer />
+            </footer> */}
         </div>
     )
 };

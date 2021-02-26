@@ -10,7 +10,7 @@ import Level7 from "./Componenets/Level7";
 import Level8 from "./Componenets/Level8";
 import Level9 from "./Componenets/Level9";
 import Level10 from "./Componenets/Level10";
-import HowToPlay from "./Componenets/HowToPlay";
+import Footer from "./Componenets/Footer";
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
     <>
       <Route exact path="/" >
         <Home />
+        {/* <Footer /> */}
       </Route>
       <Route path="/level_1" >
         <Level1 />
